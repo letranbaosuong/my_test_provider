@@ -10,16 +10,18 @@ class CounterBloc extends BaseBloc {
   CounterBloc() : super();
 
   void increment() {
-   ++_count;
-   notifyListeners();
+    ++_count;
+    notifyListeners();
   }
 
   void decrement() {
-    emit(CountEvent(--_count));
+    --_count;
+    notifyListeners();
   }
 
   void mute() {
-    emit(CountEvent(_count = 0));
+    _count = 0;
+    notifyListeners();
   }
 
   @override
@@ -28,5 +30,6 @@ class CounterBloc extends BaseBloc {
       notifyListeners();
     }
   }
+
   int get count => _count;
 }
